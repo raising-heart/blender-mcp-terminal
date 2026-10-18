@@ -6,6 +6,15 @@ in one panel and watch the 3D Viewport change next to it.
 
 ![Claude Code running in a terminal panel next to Blender's 3D Viewport](docs/images/claude-terminal-in-blender.png)
 
+Two things in one add-on:
+
+- **The terminal:** Claude Code running in a panel inside Blender.
+- **The MCP bridge:** gives Claude tools to read the scene, run Python in Blender
+  and take viewport screenshots. Claude Code outside Blender can use it too
+  (see [below](#use-claude-from-outside-blender-too)).
+
+Requirements:
+
 - Works with Blender 4.2 or newer on Windows.
 - Needs Claude Code installed and logged in (`claude` works in a normal terminal).
 - No other installs: the add-on brings its own Python packages, and the MCP server
@@ -13,12 +22,19 @@ in one panel and watch the 3D Viewport change next to it.
 
 ## Install
 
-1. Download `claude_terminal-<version>.zip` from this repository's **Releases**
-   page, or build it yourself (see [Development](#development)).
-2. In Blender: **Edit > Preferences > Add-ons**, click the small **⌄** arrow at
-   the top right, choose **Install from Disk…**, and pick the zip.
-3. Search the Add-ons list for "Claude": **Claude Terminal** should be there and
-   ticked.
+Pick whichever is easiest for you:
+
+- **[Step-by-step picture guide](docs/INSTALL.md):** about 5 minutes, no coding.
+- **[Let Claude install it for you](docs/INSTALL_WITH_CLAUDE.md):** paste one
+  message into Claude Code and it does the rest.
+- **One command** (close Blender first), in PowerShell:
+
+  ```powershell
+  $s = "$env:TEMP\claude_terminal_install.ps1"; iwr https://raw.githubusercontent.com/raising-heart/blender-mcp-terminal/main/install.ps1 -OutFile $s -UseBasicParsing; powershell -NoProfile -ExecutionPolicy Bypass -File $s
+  ```
+
+  [`install.ps1`](install.ps1) finds Blender, downloads the latest release and
+  installs it with Blender's own extension installer.
 
 ## Use
 
@@ -124,6 +140,8 @@ claude_terminal/      the add-on (Blender extension)
   mcp_server.py       stdio MCP server Claude Code starts (standard library only)
   wheels/             pyte, wcwidth, pywinpty for Blender's Python 3.11
 build.ps1             builds dist/claude_terminal-<version>.zip
+install.ps1           installs the latest release into Blender (used by the guides)
+docs/                 install guides and their pictures
 tests/
   test_vt.py          terminal emulator checks (Blender's Python, no Blender)
   test_mcp_server.py  MCP protocol checks against a running bridge
