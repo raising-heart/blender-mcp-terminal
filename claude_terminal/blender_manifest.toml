@@ -1,0 +1,33 @@
+schema_version = "1.0.0"
+
+id = "claude_terminal"
+version = "1.0.0"
+name = "Claude Terminal"
+tagline = "Claude Code in a terminal inside Blender, with a live MCP bridge"
+maintainer = "raising-heart"
+type = "add-on"
+
+tags = ["Development", "User Interface"]
+
+blender_version_min = "4.2.0"
+
+license = ["SPDX:GPL-3.0-or-later"]
+
+platforms = ["windows-x64"]
+
+wheels = [
+  "./wheels/pyte-0.8.2-py3-none-any.whl",
+  "./wheels/wcwidth-0.2.13-py2.py3-none-any.whl",
+  "./wheels/pywinpty-3.1.0-cp311-cp311-win_amd64.whl",
+]
+
+[permissions]
+network = "Local-only bridge so Claude Code can control this session"
+files = "Writes temporary screenshots and the MCP config for Claude"
+clipboard = "Copy and paste text in the terminal"
+
+[build]
+paths_exclude_pattern = [
+  "__pycache__/",
+  "*.pyc",
+]

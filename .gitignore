@@ -1,0 +1,28 @@
+# Build output: attach the zip to a GitHub release instead of committing it
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Blender backups
+*.blend1
+*.blend@
+
+# Personal files kept in this folder but not part of the add-on
+# (character reference images in the project root)
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+
+# Local tool settings
+.claude/settings.local.json
+CLAUDE.local.md
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
